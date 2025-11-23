@@ -45,6 +45,14 @@ public class ReconciliationServiceImpl implements ReconciliationService {
     }
 
     @Override
+    public ReconciliationResponse getById(UUID id) {
+        Reconciliation entity = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Record not found"));
+
+        return toResponse(entity);
+    }
+
+    @Override
     public ReconciliationResponse updateStatus(UUID id, UpdateStatusRequest request) {
         Reconciliation rec = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Reconciliation not found"));
@@ -53,6 +61,14 @@ public class ReconciliationServiceImpl implements ReconciliationService {
         repository.save(rec);
 
         return toResponse(rec);
+    }
+
+    @Override
+    public void delete(UUID id) {
+        if (!repository.existsById(id)) {
+            throw new RuntimeException("Record not found");
+        }
+        repository.deleteById(id);
     }
 
     private ReconciliationResponse toResponse(Reconciliation rec) {

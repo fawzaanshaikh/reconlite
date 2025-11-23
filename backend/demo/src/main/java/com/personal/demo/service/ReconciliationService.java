@@ -11,6 +11,8 @@ public interface ReconciliationService {
     
     ReconciliationResponse create(CreateReconciliationRequest request);
     List<ReconciliationResponse> getAll();
+    ReconciliationResponse getById(UUID id);
     ReconciliationResponse updateStatus(UUID id, UpdateStatusRequest request);
+    void delete(UUID id);
 
 }
