@@ -10,7 +10,7 @@ export const createReconciliation = (data) =>
 
 // GET ALL
 export const getAllReconciliations = () =>
-  API.get("/");
+  API.get("");
 
 // GET BY ID
 export const getReconciliationById = (id) =>

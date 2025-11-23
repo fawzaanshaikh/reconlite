@@ -1,15 +1,17 @@
 // src/components/StatusModal.jsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 
 export default function StatusModal({ open, onClose, onUpdate, currentStatus, id, updateStatusApi }) {
   const [selected, setSelected] = useState(currentStatus || "PENDING");
   const statuses = ["PENDING", "MATCHED", "MISMATCH", "REVIEWED", "CLOSED"];
 
-  // keep selected synced when modal opens with different item
-  if (open && selected !== currentStatus) {
-    setSelected(currentStatus);
-  }
+  // Sync selected value ONLY when modal opens or currentStatus changes
+  useEffect(() => {
+    if (open) {
+      setSelected(currentStatus);
+    }
+  }, [open, currentStatus]);
 
   if (!open) return null;
 
