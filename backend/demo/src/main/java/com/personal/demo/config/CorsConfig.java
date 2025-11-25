@@ -13,7 +13,7 @@ public class CorsConfig {
     public CorsFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
         config.addAllowedOrigin("http://localhost:5173");
-        config.addAllowedOrigin("http://localhost:5174"); // if needed
+        config.addAllowedOrigin("https://reconlite.vercel.app"); // for deployment
         config.addAllowedMethod("*");
         config.addAllowedHeader("*");
         config.setAllowCredentials(false);
